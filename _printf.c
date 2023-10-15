@@ -19,9 +19,7 @@ int _printf(const char *format, ...)
 		{'s', print_str},
 		{'%', print_percentage}
 	};
-
 	va_list args;
-
 	int i, ret, res = 0, j;
 
 	va_start(args, format);
