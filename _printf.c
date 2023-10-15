@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		{'%', print_percentage}
 	};
 	va_list args;
-	int i, ret, res = 0, j;
+	int i, res = 0, j;
 
 	va_start(args, format);
 	if (!format || (format[0] == '%' && !(format[1])))
@@ -36,10 +36,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == dict[j].sp)
 			{
-				ret = dict[j].func(args);
-				if (ret == -1)
-					return (-1);
-				res += ret;
+				res = dict[j].func(args);
 				i++;
 				break;
 			}
