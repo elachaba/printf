@@ -1,6 +1,9 @@
 #include "main.h"
 
 #define CONVERT_LIST_LEN 3
+#define END_OF_LIST -2
+#define ERROR -1
+
 
 /**
  * _printf - produces output according to a format.
@@ -19,7 +22,7 @@ int _printf(const char *format, ...)
 
 	va_list args;
 
-	int i, returned, res = 0, j;
+	int i, ret, res = 0, j;
 
 	va_start(args, format);
 	if (!format || (format[0] == '%' && !(format[1])))
@@ -28,29 +31,23 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
-			res++;
+			res += _putchar(format[i]);
+			continue;
 		}
-		else
+		for (j = 0; j < CONVERT_LIST_LEN; j++)
 		{
-			j = 0;
-			while (j < CONVERT_LIST_LEN)
+			if (format[i + 1] == dict[j].sp)
 			{
-				if (dict[j].sp == format[i + 1])
-				{
-					returned = dict[j].func(args);
-					i++;
-					if (returned == -1)
-						return (-1);
-					res += returned;
-					break;
-				}
-				j++;
+				ret = dict[j].func(args);
+				if (ret == -1)
+					return (-1);
+				res += ret;
+				i++;
+				break;
 			}
-			if (j < CONVERT_LIST_LEN)
-				continue;
-			_putchar(format[i]);
 		}
+		if (j == CONVERT_LIST_LEN)
+			_putchar(format[i]);
 	}
 	va_end(args);
 	return (res);
