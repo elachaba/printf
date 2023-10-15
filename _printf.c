@@ -1,8 +1,7 @@
 #include "main.h"
 
 #define CONVERT_LIST_LEN 3
-#define END_OF_LIST -2
-#define ERROR -1
+
 
 
 /**
@@ -36,7 +35,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == dict[j].sp)
 			{
-				res = dict[j].func(args);
+				res += dict[j].func(args);
 				i++;
 				break;
 			}
