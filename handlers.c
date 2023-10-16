@@ -52,14 +52,16 @@ int print_int(va_list args)
 	if (num < 0)
 	{
 		len += _putchar('-');
-		num  = num * (-1);
+		tmp = num * -1;
 	}
-	tmp = num;
+	else
+		tmp = num;
+
 	while (tmp / pow > 9)
 		pow *= 10;
 	while (pow != 0)
 	{
-		len += _putchar(tmp / pow + '0');
+		len += _putchar((tmp / pow) + '0');
 		tmp %= pow;
 		pow /= 10;
 	}
