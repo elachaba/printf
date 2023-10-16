@@ -46,31 +46,27 @@ int print_str(va_list args)
 
 int print_int(va_list args)
 {
-	int n;
-	int div;
-	int len;
-	unsigned int num;
+	int num, pow = 1, len = 0;
+	unsigned int tmp;
 
-	n  = va_arg(args, int);
-	div = 1;
-	len = 0;
+	num  = va_arg(args, int);
 
-	if (n < 0)
+	if (num < 0)
 	{
 		len += _putchar('-');
-		num = n * -1;
+		tmp = num * -1;
 	}
 	else
-		num = n;
+	       tmp = num;
 
-	for (; num / div > 9; )
-		div *= 10;
+	while (tmp / pow > 9)
+		pow *= 10;
 
-	for (; div != 0; )
+	while (pow != 0)
 	{
-		len += _putchar('0' + num / div);
-		num %= div;
-		div /= 10;
+		len += _putchar('0' + tmp / pow);
+		tmp %= pow;
+		pow /= 10;
 	}
 
 	return (len);
