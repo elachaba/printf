@@ -44,15 +44,16 @@ int print_number(int num)
 
 char *convert_base(unsigned int num, int base)
 {
-	char converted[UNITSIZE];
-	char *rep, *ptr;
+	static char converted[UNITSIZE];
+	static char *rep;
+	char *ptr;
 
 	rep = "0123456789abcdef";
 	ptr = &converted[UNITSIZE - 1];
 
 	*ptr = '\0';
 	do {
-		*(--ptr) = rep[num % base];
+		*--ptr = rep[num % base];
 		num /= base;
 	} while (num != 0);
 

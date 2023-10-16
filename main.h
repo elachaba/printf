@@ -25,13 +25,19 @@ typedef struct match
 	int (*func)();
 } handle_match;
 
+int print_number(int num);
+char *convert_base(unsigned int num, int base);
+
+int _putchar(char c);
+int _puts(char *s);
+
 int _printf(const char *format, ...);
 int handle_format(const char *format, va_list args, handle_match map[]);
-int _putchar(char c);
 int print_char (va_list args);
 int print_str(va_list args);
 int print_percentage(va_list args);
 int print_int(va_list args);
+int print_bin(va_list args);
 
 #endif
 
