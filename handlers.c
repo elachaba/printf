@@ -46,26 +46,28 @@ int print_str(va_list args)
 
 int print_int(va_list args)
 {
-	int num, tmp, pow = 1, len = 0;
+	int num, rev = 0, len = 0;
 
 	num = va_arg(args, int);
+	if (num == 0)
+		return (_putchar('0'));
 	if (num < 0)
 	{
 		len += _putchar('-');
-		tmp = num * -1;
+		num = -num;
 	}
-	else
-		tmp = num;
-
-	while (tmp / pow > 9)
-		pow *= 10;
-	while (pow != 0)
+	while (num != 0)
 	{
-		len += _putchar((tmp / pow) + '0');
-		tmp %= pow;
-		pow /= 10;
+		rev = rev * 10 + (num % 10);
+		num /= 10;
+	}
+	while (rev != 0)
+	{
+		len += _putchar ('0' + (rev % 10));
+		rev /= 10;
 	}
 	return (len);
+
 }
 
 /**
