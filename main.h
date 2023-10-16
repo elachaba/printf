@@ -17,7 +17,7 @@
 
 typedef struct match
 {
-	char* sp;
+	char *sp;
 	int (*func)();
 } handle_match;
 

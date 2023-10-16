@@ -68,7 +68,8 @@ int print_int(va_list args)
 
 /**
  * print_percentage - prints % to the stdout
- * 
+ * @args: a pointer to the arguments of printf
+ *
  * Return: 1
  */
 
