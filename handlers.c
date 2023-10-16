@@ -36,7 +36,6 @@ int print_str(va_list args)
 	return (len);
 }
 
-
 /**
  * print_int - prints an integer to the stdout
  * @args: a pointer to the arguments of printf
@@ -46,30 +45,9 @@ int print_str(va_list args)
 
 int print_int(va_list args)
 {
-	int num, pow = 1, len = 0;
-	unsigned int tmp;
+	int num  = va_arg(args, int);
 
-	num  = va_arg(args, int);
-
-	if (num < 0)
-	{
-		len += _putchar('-');
-		tmp = num * -1;
-	}
-	else
-	       tmp = num;
-
-	while (tmp / pow > 9)
-		pow *= 10;
-
-	while (pow != 0)
-	{
-		len += _putchar('0' + tmp / pow);
-		tmp %= pow;
-		pow /= 10;
-	}
-
-	return (len);
+	return (print_number(num));
 }
 
 /**
@@ -82,4 +60,19 @@ int print_int(va_list args)
 int print_percentage(__attribute__((unused)) va_list args)
 {
 	return (_putchar('%'));
+}
+
+/**
+ * print_bin - prints a number in base 2 to the stdout
+ * @args: a pointer to the arguments of printf
+ *
+ * Return: the number of characters printed
+ */
+
+int print_bin(va_list args)
+{
+	unsigned int num = va_arg(args, int);
+	char *s = convert_base(num, BINARY);
+
+	return (print_string(s));
 }

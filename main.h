@@ -7,6 +7,10 @@
 #include <unistd.h>
 #include <limits.h>
 
+#define UNITSIZE 65
+#define BINARY 2
+#define HEXA 16
+#define OCTAL 8
 
 /**
  * struct match - matches the specifiers with the print function
