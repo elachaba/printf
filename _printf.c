@@ -18,6 +18,10 @@ int _printf(const char *format, ...)
 		{"d", print_int},
 		{"i", print_int},
 		{"b", print_bin},
+		{"u", print_uint},
+		{"x", print_hex},
+		{"X", print_heX},
+		{"o", print_oct},
 		{NULL, NULL}
 	};
 	va_list args;

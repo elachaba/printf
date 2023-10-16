@@ -38,17 +38,21 @@ int print_number(int num)
  * convert_base - converts an unsigned int to a given base
  * @num: the number to convert
  * @base: the base to which we convert the number num
+ * @lower: a specifier for x or X, if lowecase == 1
+ * the numbers after 10 in hex are printed in lowercase
  *
  * Return: a string containing the converted number
  */
 
-char *convert_base(unsigned int num, int base)
+char *convert_base(unsigned int num, int base, bool lower)
 {
 	static char converted[UNITSIZE];
 	static char *rep;
 	char *ptr;
 
-	rep = "0123456789abcdef";
+	rep = (lower) ?
+		"0123456789abcdef" :
+		"0123456789ABCDEF";
 	ptr = &converted[UNITSIZE - 1];
 
 	*ptr = '\0';

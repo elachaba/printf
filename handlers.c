@@ -67,6 +67,71 @@ int print_percentage(__attribute__((unused)) va_list args)
 int print_bin(va_list args)
 {
 	unsigned int num = va_arg(args, int);
-	char *s = convert_base(num, BINARY);
+	char *s = convert_base(num, BINARY, false);
+	return (_puts(s));
+}
+
+/**
+ * print_uint - prints an unsigned int to the stdout
+ * this functon handles the specifier u
+ * @args: the pointer to the arguments of printf
+ *
+ * Return: the number of bytes printed
+ */
+
+int print_uint(va_list args)
+{
+	unsigned int num = va_arg(args, int);
+	char *s = convert_base(num, DEC, false);
+
+	return (_puts(s));
+}
+
+/**
+ * print_heX - prints a number in the hexadecimal base.
+ * The letters representing the numbers after 9 in te hexa
+ * base are in uppercase
+ * @args: the pointer to the arguments of printf
+ *
+ * Return: the number of bytes printed
+ */
+
+int print_heX(va_list args)
+{
+	unsigned int num = va_arg(args, int);
+	char *s = convert_base(num , HEXA, false);
+
+	return (_puts(s));
+}
+
+/**
+ * print_hex - prints a number in the hexadecimal base.
+ * The letters representing the numbers after 9 in the hexa
+ * base are in lowercase
+ * @args: the pointer to the arguments of printf
+ *
+ * Return: the number of bytes printed
+ */
+
+int print_hex(va_list args)
+{
+	unsigned int num = va_arg(args, int);
+	char *s = convert_base(num, HEXA, true);
+
+	return(_puts(s));
+}
+
+/**
+ * print_oct - prints a number in the octal base.
+ * @args: the pointer to the arguments of printf
+ *
+ * Return: the number of bytes printed
+ */
+
+int print_oct(va_list args)
+{
+	unsigned int num = va_arg(args, int);
+	char *s = convert_base(num, OCTAL, false);
+
 	return (_puts(s));
 }
