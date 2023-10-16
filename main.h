@@ -17,15 +17,17 @@
 
 typedef struct match
 {
-	char sp;
+	char* sp;
 	int (*func)();
-} print_match;
+} handle_match;
 
 int _printf(const char *format, ...);
+int handle_format(const char *format, va_list args, handle_match map[]);
 int _putchar(char c);
 int print_char (va_list args);
 int print_str(va_list args);
-int print_percentage(void);
+int print_percentage(va_list args);
+int print_int(va_list args);
 
 #endif
 
