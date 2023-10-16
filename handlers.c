@@ -46,29 +46,34 @@ int print_str(va_list args)
 
 int print_int(va_list args)
 {
-	int num, tmp, rev = 0, len = 0;
+	int n;
+	int div;
+	int len;
+	unsigned int num;
 
-	num = va_arg(args, int);
-	if (num == 0)
-		return (_putchar('0'));
-	tmp = num;
-	if (tmp < 0)
+	n  = va_arg(args, int);
+	div = 1;
+	len = 0;
+
+	if (n < 0)
 	{
 		len += _putchar('-');
-		tmp = tmp * -1;
+		num = n * -1;
 	}
-	while (tmp != 0)
-	{
-		rev = rev * 10 + (tmp % 10);
-		tmp /= 10;
-	}
-	while (rev != 0)
-	{
-		len += _putchar ('0' + (rev % 10));
-		rev /= 10;
-	}
-	return (len);
+	else
+		num = n;
 
+	for (; num / div > 9; )
+		div *= 10;
+
+	for (; div != 0; )
+	{
+		len += _putchar('0' + num / div);
+		num %= div;
+		div /= 10;
+	}
+
+	return (len);
 }
 
 /**
@@ -82,4 +87,3 @@ int print_percentage(__attribute__((unused)) va_list args)
 {
 	return (_putchar('%'));
 }
-
